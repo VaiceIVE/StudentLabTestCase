@@ -1,0 +1,152 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "API для сбора информации с Yandex Forms",
+    "description": "Написан на NodeJS + express. Позволяет собирать, хранить и получать информацию о заполнении форм",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:8000/"
+    }
+  ],
+  "paths": {
+    "/post": {
+      "post": {
+        "description": "Добавить запись в базу",
+        "parameters": [{
+          "name": "body",
+          "in": "body",
+          "schema":{
+            "$ref": "#/definitions/Payload"
+          }
+        }],
+        "responses": {
+          "200":
+          {
+            "description": "Информация об записи на базе",
+            "schema": {"$ref": "#/definitions/FormResponse"}
+          }
+        }
+      }
+    },
+    "/all": {
+      "get": {
+        "description": "Получить все записи",
+        "parameters": [],
+        "responses": {"200":{
+          "description": "Информация об записях на базе",
+            "schema": {"$ref": "#/definitions/FormResponse"}
+        }}
+      }
+    },
+    "/{id}": {
+      "get": {
+        "description": "Получить запись по ID",
+        "parameters": [{
+          "name": "id",
+          "in": "query",
+          "schema": "647b8002cbd16edc83da220a" 
+        }],
+        "responses": {
+          "200":{
+            "description": "Информация об записи на базе",
+            "schema": {"$ref": "#/definitions/FormResponse"}
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Payload": {
+        "type": "object",
+        "properties": {
+          "username": {
+            "type": "string",
+            "example": "Some User"
+          },
+          "email": {
+            "type": "string",
+            "example": "User`s@mail.com"
+          },
+          "payload": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "1": {
+                  "type": "string"
+                },
+                "2": {
+                  "type": "string",
+                  "example": "no"
+                }
+              }
+            }
+          }
+        },
+        "required": [
+          "username",
+          "email",
+          "payload"
+        ]
+      },
+      "FormResponse": {
+        "type": "object",
+        "properties": {
+          "username": {
+            "type": "string",
+            "example": "bibaboba"
+          },
+          "email": {
+            "type": "string",
+            "example": "bobas mail"
+          },
+          "payload": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "1": {
+                  "type": "string"
+                },
+                "2": {
+                  "type": "string",
+                  "example": "no"
+                }
+              }
+            }
+          },
+          "_id": {
+            "type": "string",
+            "example": "647b8002cbd16edc83da220a"
+          },
+          "__v": {
+            "type": "number",
+            "example": 0
+          }
+        },
+        "required": [
+          "username",
+          "email",
+          "payload",
+          "_id",
+          "__v"
+        ]
+      },
+      "FormID": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "647b8002cbd16edc83da220a"
+          }
+        },
+        "required": [
+          "id"
+        ]
+      }
+    }
+  }
+}
