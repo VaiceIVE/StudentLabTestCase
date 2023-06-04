@@ -8,3 +8,13 @@ services:
     environment:
       - PORT=80
       
+  mongodb:
+    image: mongo
+    container_name: mongo-leaf
+    environment:
+      MONGO_INITDB_DATABASE: yandex-forms
+      MONGO_INITDB_ROOT_USERNAME: self
+      MONGO_INITDB_ROOT_PASSWORD: admin
+    ports:
+      - 27017:27017
+      
