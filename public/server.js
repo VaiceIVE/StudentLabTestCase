@@ -32,7 +32,7 @@ const db_1 = __importDefault(require("./db"));
 const swagger_ui_express_1 = __importDefault(require("swagger-ui-express"));
 const swaggerfile = __importStar(require("./swagger_output.json"));
 const app = (0, express_1.default)();
-const PORT = 8000;
+const PORT = 80;
 (0, db_1.default)();
 app.use('/docs', swagger_ui_express_1.default.serve, swagger_ui_express_1.default.setup(swaggerfile));
 app.use(express_1.default.json());

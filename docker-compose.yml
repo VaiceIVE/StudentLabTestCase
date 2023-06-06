@@ -4,15 +4,17 @@ services:
   node:
     build: .
     ports:
-      - 8001:80
+      - 8000:8000
     environment:
-      - PORT=80
+      - PORT=8000
+    links:
+     - mongodb
       
   mongodb:
     image: mongo
     container_name: mongo-leaf
     environment:
-      MONGO_INITDB_DATABASE: yandex-forms
+      MONGO_INITDB_DATABASE: lab
       MONGO_INITDB_ROOT_USERNAME: self
       MONGO_INITDB_ROOT_PASSWORD: admin
     ports:
